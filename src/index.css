@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-hueso text-azulo font-sans antialiased;
+  /* Allow system text scaling but keep app usable */
+  overscroll-behavior-y: none;
+}
+
+/* Diagonal hazard stripe used only as decorative accent in yellow headers */
+.hazard-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #FFC20E 0,
+    #FFC20E 14px,
+    #10243E 14px,
+    #10243E 28px
+  );
+}
+
+/* Hide scrollbar for swipe card dots etc */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth focus ring for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #1B3A5C;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
