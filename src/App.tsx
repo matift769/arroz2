@@ -26,9 +26,14 @@ export default function App() {
   // Pantalla de selección de perfil
   if (perfil === 'seleccion') {
     return (
-      <div className="relative min-h-screen w-full bg-[url('/image.png')] bg-cover bg-center bg-fixed">
-        <div className="absolute inset-0 bg-white/65" aria-hidden="true" />
-        <div className="relative min-h-screen mx-auto w-full max-w-[390px] shadow-xl">
+      <div className="relative min-h-screen min-h-[100dvh] w-full overflow-x-hidden">
+        <div
+          className="fixed inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/fondo.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 z-0 bg-white/65" aria-hidden="true" />
+        <div className="relative z-10 min-h-screen min-h-[100dvh] mx-auto w-full max-w-[390px] shadow-xl">
           <Seleccion
             onTrabajador={() => {
               setPantalla('inicio');
@@ -44,9 +49,14 @@ export default function App() {
   // Acceso de administrador (contraseña)
   if (perfil === 'acceso') {
     return (
-      <div className="relative min-h-screen w-full bg-[url('/image.png')] bg-cover bg-center bg-fixed">
-        <div className="absolute inset-0 bg-white/65" aria-hidden="true" />
-        <div className="relative min-h-screen mx-auto w-full max-w-[390px] shadow-xl">
+      <div className="relative min-h-screen min-h-[100dvh] w-full overflow-x-hidden">
+        <div
+          className="fixed inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/fondo.webp')" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 z-0 bg-white/65" aria-hidden="true" />
+        <div className="relative z-10 min-h-screen min-h-[100dvh] mx-auto w-full max-w-[390px] shadow-xl">
           <AccesoAdmin
             onEntrar={() => setPerfil('admin')}
             onVolver={() => setPerfil('seleccion')}
@@ -69,9 +79,14 @@ export default function App() {
 
   // Modo trabajador (idéntico al comportamiento anterior)
   return (
-    <div className="relative min-h-screen w-full bg-[url('/image.png')] bg-cover bg-center bg-fixed">
-      <div className="absolute inset-0 bg-white/65" aria-hidden="true" />
-      <div className="relative min-h-screen mx-auto w-full max-w-[390px] shadow-xl">
+    <div className="relative min-h-screen min-h-[100dvh] w-full overflow-x-hidden">
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/fondo.webp')" }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 z-0 bg-white/65" aria-hidden="true" />
+      <div className="relative z-10 min-h-screen min-h-[100dvh] mx-auto w-full max-w-[390px] shadow-xl">
         <main className="min-h-screen pb-[148px]">
           {pantalla === 'inicio' && <Inicio ir={ir} onCambiarPerfil={() => setPerfil('seleccion')} />}
           {pantalla === 'guia' && <Guia onAtras={() => ir('inicio')} />}
