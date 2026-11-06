@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Check, X, ChevronRight, RotateCcw, BarChart3, Trophy } from 'lucide-react';
+import { Check, X, ChevronRight, RotateCcw, Trophy } from 'lucide-react';
 import Encabezado from '@/components/Encabezado';
 import { preguntasDeSesion, PreguntaTrivia } from '@/data/trivia';
-import { reglaPorId, REGLAS } from '@/data/reglas';
+import { reglaPorId } from '@/data/reglas';
 import { vibrar } from '@/lib/hablar';
-import { guardarResultado, resumenPorRegla, enviarASheets } from '@/lib/storage';
+import { guardarResultado, enviarASheets } from '@/lib/storage';
 
 interface TriviaProps {
   onAtras: () => void;
@@ -61,13 +61,6 @@ export default function Trivia({ onAtras }: TriviaProps) {
               {aciertos} de {preguntas.length}
             </p>
             <p className="mt-2 text-base text-azulo/70 font-semibold">{mensaje}</p>
-          </div>
-
-          <div className="mt-6 rounded-2xl bg-white border-2 border-azulo/10 p-4">
-            <p className="flex items-center gap-2 text-lg font-extrabold text-azulo">
-              <BarChart3 className="w-6 h-6" /> Tus temas por reforzar
-            </p>
-            <TemasPorReforzar />
           </div>
 
           <button
@@ -164,39 +157,6 @@ function TarjetaResumenRegla({ reglaId }: { reglaId: string }) {
         {regla.id} · {regla.zona}
       </p>
       <p className="mt-1 text-base font-semibold text-azulo leading-snug">{regla.corta}</p>
-    </div>
-  );
-}
-
-function TemasPorReforzar() {
-  const resumen = resumenPorRegla();
-  const total = Object.values(resumen).reduce((s, r) => s + r.aciertos + r.errores, 0) || 1;
-
-  return (
-    <div className="mt-3 flex flex-col gap-2">
-      {REGLAS.map((r) => {
-        const dato = resumen[r.id] ?? { aciertos: 0, errores: 0 };
-        const respondidas = dato.aciertos + dato.errores;
-        const porcentaje = respondidas === 0 ? 0 : Math.round((dato.errores / respondidas) * 100);
-        const necesita = respondidas > 0 && dato.errores > 0;
-        return (
-          <div key={r.id}>
-            <div className="flex items-center justify-between text-sm font-semibold text-azulo">
-              <span>{r.id} · {r.titulo}</span>
-              {necesita && <span className="text-rojo-oscuro text-xs">Reforzar</span>}
-            </div>
-            <div className="h-3 rounded-full bg-azulo/10 overflow-hidden">
-              <div
-                className={`h-3 rounded-full ${necesita ? 'bg-rojo' : respondidas > 0 ? 'bg-verde' : 'bg-azulo/20'}`}
-                style={{ width: `${necesita ? porcentaje : respondidas > 0 ? 100 : 0}%` }}
-              />
-            </div>
-          </div>
-        );
-      })}
-      <p className="text-xs text-azulo/50 mt-1">
-        Resultados anónimos guardados en este dispositivo. Basados en {total} respuestas.
-      </p>
     </div>
   );
 }
