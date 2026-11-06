@@ -50,28 +50,6 @@ export default function Guia({ onAtras }: GuiaProps) {
     <>
       <Encabezado titulo="Guía de bolsillo" onAtras={onAtras} acento="amarillo" />
       <div className="px-4 pt-4 pb-4">
-        <section className="mb-4 rounded-2xl border-2 border-azulo/10 bg-white p-3 shadow-sm">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <h2 className="text-lg font-extrabold text-azulo">Mapa de zonas</h2>
-            <span className="text-xs font-semibold text-azulo/55">Toca para ampliar</span>
-          </div>
-          <button
-            type="button"
-            onClick={() => setMapaAbierto(true)}
-            className="block w-full overflow-hidden rounded-xl bg-hueso text-left transition-transform hover:brightness-95 active:scale-[0.99]"
-            aria-label="Abrir mapa de las zonas de la planta"
-          >
-            <span className="block aspect-[16/9] w-full">
-              <img
-                src="/images/mapa-zonas.png"
-                alt="Mapa de las zonas de la planta con los colores de cada norma"
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </span>
-          </button>
-        </section>
-
         <div className="relative mb-4">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-azulo/40" />
           <input
@@ -122,6 +100,29 @@ export default function Guia({ onAtras }: GuiaProps) {
             })}
           </ul>
         )}
+
+        <section className="mt-4 rounded-2xl border-2 border-azulo/10 bg-white p-3 shadow-sm">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <h2 className="text-lg font-extrabold text-azulo">Mapa de zonas</h2>
+            <span className="text-xs font-semibold text-azulo/55">Toca para ampliar</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setMapaAbierto(true)}
+            className="block w-full overflow-hidden rounded-xl bg-hueso text-left transition-transform hover:brightness-95 active:scale-[0.99]"
+            aria-label="Abrir mapa de las zonas de la planta"
+          >
+            <span className="block aspect-[16/9] w-full">
+              <img
+                src="/images/mapa-zonas.png"
+                alt="Mapa de las zonas de la planta con los colores de cada norma"
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </span>
+          </button>
+        </section>
+
         {mapaAbierto && (
           <div
             className="fixed inset-0 z-50 grid place-items-center bg-black/90 p-4"
